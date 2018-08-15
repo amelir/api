@@ -12,9 +12,11 @@
     "chokidar": "^2.0.4"
   },
   "dependencies": {
+    "auth": "github:amelir/auth",
     "body-parser": "^1.18.3",
     "debug": "^3.1.0",
     "dotenv": "^6.0.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "schemas": "github:amelir/schemas"
   }
 }

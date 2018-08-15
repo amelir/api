@@ -1,7 +1,7 @@
-const boot = require('./boot');
 const chokidar = require('chokidar');
 const debug = require('debug')('app');
 const path = require('path');
+const schemas = require('schemas');
 
 // Load environmental variables
 require('dotenv').config();
@@ -11,10 +11,10 @@ const state = {
   sockets: []
 }
 
-boot()
+schemas.init()
   .then(() => {
     start();
-    chokidar.watch(['./server.js', './routes', './schemas', './utils'])
+    chokidar.watch(['./server.js', './routes', './utils'])
       .on('all', (event, at) => {
         if(event === 'change'){
           debug('Changes at', at);
@@ -60,6 +60,7 @@ function restart(){
 function checkPath(id){
   return (
     id.startsWith(path.join(__dirname, 'routes')) ||
+    id.startsWith(path.join(__dirname, 'utils')) ||
     id.startsWith(path.join(__dirname, 'server.js'))
   );
 }
