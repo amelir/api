@@ -1,6 +1,7 @@
 const route = require('express').Router();
 
 // Route modules
+const account = require('account-api');
 const auth = require('auth');
 
 route
@@ -10,5 +11,10 @@ route
 });
 
 route.use('/auth', auth);
+
+// Require token for any request outside authentication
+route.use(require('auth/checkToken'));
+
+route.use('/account', account);
 
 module.exports = route;
